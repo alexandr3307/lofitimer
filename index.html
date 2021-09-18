@@ -96,6 +96,9 @@
       var minutesInputElement = document.getElementById('minutes-input');
       function updateTimeout() {
         timeoutMin = parseInt(minutesInputElement.value);
+        if (isNaN(timeoutMin)) {
+          return;
+        }
         timer.stop();
         timer.setTimeout(timeoutMin * 60 * 1000);
       }
