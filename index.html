@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='./js/timer.js'></script>
+  </head>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+
+    <div id="timer">
+      <div id="timer-display">00:00:00</div>
+      <div id="timer-controls">
+        <input id="minutes-input" type="text"><label for="minutes-input">Minutes</label>
+        <div id="set-time-btn" onclick=updateTimeout()>Set Time</div>
+        <div id="play-btn" onclick=timer.start()>Play</div>
+        <div id="pause-btn" onclick=timer.pause()>Pause</div>
+      </div>
+    </div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '0',
+          width: '0',
+          videoId: '5qap5aO4i9A',
+          playerVars: {
+            'autoplay': 0,
+            'disablekb': 1,
+            'playlist': '5qap5aO4i9A',
+            'loop': 1,
+          },
+        });
+      }
+
+      function zeroPad(num, size) {
+        numStr = num.toString();
+        if (numStr.length >= size) {
+          return numStr;
+        }
+        return numStr.padStart(size, '0');
+      }
+
+      var timerDisplayElement = document.getElementById('timer-display');
+
+      function displaySeconds(seconds) {
+        if (seconds >= 24 * 60 * 60) {
+          seconds = 24 * 60 * 60 - 1;
+        }
+        if (seconds < 0) {
+          seconds = 0;
+        }
+        seconds = Math.floor(seconds);
+        var displaySeconds = seconds % 60;
+        var displayMinutes = Math.floor(seconds / 60) % 60;
+        var displayHours   = Math.floor(seconds / 60 / 60);
+
+        displaySeconds = zeroPad(displaySeconds, 2);
+        displayMinutes = zeroPad(displayMinutes, 2);
+        displayHours   = zeroPad(displayHours, 2);
+
+        timerDisplayElement.innerHTML = `${displayHours}:${displayMinutes}:${displaySeconds}`;
+      }
+
+      var timer = new Timer(100);
+      timer.onUpdate = function() {
+        displaySeconds(timer.remainingMs / 1000);
+      }
+      timer.onPause = function() {
+        player.pauseVideo();
+      }
+      timer.onStop = function() {
+        player.pauseVideo();
+        displaySeconds(timer.remainingMs / 1000);
+      }
+      timer.onStart = function() {
+        player.playVideo();
+      }
+      timer.onSetTimeout = function(timeoutMs) {
+        displaySeconds(timeoutMs / 1000);
+      }
+      timer.setTimeout(25 * 60 * 1000);
+
+      var minutesInputElement = document.getElementById('minutes-input');
+      function updateTimeout() {
+        timeoutMin = parseInt(minutesInputElement.value);
+        timer.stop();
+        timer.setTimeout(timeoutMin * 60 * 1000);
+      }
+    </script>
+  </body>
+</html>
