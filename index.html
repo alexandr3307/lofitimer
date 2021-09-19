@@ -74,6 +74,8 @@
         timerDisplayElement.innerHTML = `${displayHours}:${displayMinutes}:${displaySeconds}`;
       }
 
+      var bellSound = new Audio('https://storage.yandexcloud.net/lofitimer/bell.wav');
+
       var timer = new Timer(100);
       timer.onUpdate = function() {
         displaySeconds(timer.remainingMs / 1000);
@@ -84,6 +86,7 @@
       timer.onStop = function() {
         player.pauseVideo();
         displaySeconds(timer.remainingMs / 1000);
+        bellSound.play();
       }
       timer.onStart = function() {
         player.playVideo();
