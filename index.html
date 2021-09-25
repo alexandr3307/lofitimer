@@ -15,7 +15,6 @@
       <img id="play-btn-pic" src="https://storage.yandexcloud.net/lofitimer/play.svg"/>
     </div>
   </div>
-  <div class="set-time-btn" onclick=updateTimeout()>Set Time</div>
 </div>
 
 <script>
@@ -52,6 +51,7 @@
   }
 
   let timeOfTimer = document.getElementById('timer-input');
+  timeOfTimer.addEventListener('mouseout', () => updateTimeout())
 
   function displaySeconds(seconds) {
     if (isNaN(seconds)) {
@@ -112,11 +112,8 @@
       timer.start();
     }
   }
-  console.log('pidor', timeOfTimer.value)
   function updateTimeout() {
-    console.log('pidor', timeOfTimer.value)
     let timeoutMin = timeOfTimer.value.split(":")
-    console.log('pidor', timeoutMin)
     let hours = parseInt(timeoutMin[0]) * 60 * 60 * 1000;
     let minutes = parseInt(timeoutMin[1]) * 60 * 1000;
     let seconds = 0
@@ -124,7 +121,6 @@
       seconds = parseInt(timeoutMin[2]) * 1000;
     }
     timeoutMin = hours + minutes + seconds
-    console.log('pidor', timeoutMin)
     if (isNaN(timeoutMin)) {
       return;
     }
