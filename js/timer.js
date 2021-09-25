@@ -3,7 +3,7 @@ class Timer {
     this.updateIntervalMs = updateIntervalMs;
     this.interval = null;
     this.elapsedMs = 0;
-    this.isRunning = false;
+    this.state = "stopped";
 
     this.onSetTimeout = function(timeout) {};
     this.onStart = function() {};
@@ -21,28 +21,28 @@ class Timer {
   }
 
   start() {
-    if (this.isRunning) {
+    if (this.state == "running") {
       return;
     }
-    this.isRunning = true;
+    this.state = "running";
     this.interval = setInterval(this.update.bind(this), this.updateIntervalMs);
     this.onStart();
   }
 
   pause() {
-    if (!this.isRunning) {
+    if (this.state != "running") {
       return;
     }
-    this.isRunning = false;
+    this.state = "paused";
     clearInterval(this.interval);
     this.onPause();
   }
 
   stop() {
-    if (!this.isRunning) {
+    if (this.state == "stopped") {
       return;
     }
-    this.isRunning = false;
+    this.state = "stopped";
     clearInterval(this.interval);
     this.elapsedMs = 0;
     this.onStop();
