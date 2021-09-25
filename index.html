@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src='./js/timer.js'></script>
+    <script src='js/timer.js'></script>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
 
     <div id="timer">
-      <div id="timer-display">00:00:00</div>
       <div id="timer-controls">
-        <input id="minutes-input" type="text"><label for="minutes-input">Minutes</label>
-        <div id="set-time-btn" onclick=updateTimeout()>Set Time</div>
-        <div id="play-btn" onclick=timer.start()>Play</div>
-        <div id="pause-btn" onclick=timer.pause()>Pause</div>
+        <div id="timer-display">00:00:00</div>
+        <div id="play-btn" onclick=playBtnClick()>Play</div>
       </div>
+      <input id="minutes-input" type="text" value="25"><label for="minutes-input">Minutes</label>
+      <div id="set-time-btn" onclick=updateTimeout()>Set Time</div>
     </div>
 
     <script>
@@ -75,6 +75,9 @@
       }
 
       var bellSound = new Audio('https://storage.yandexcloud.net/lofitimer/bell.wav');
+      bellSound.volume = 0.1;
+
+      var playBtnElement = document.getElementById("play-btn");
 
       var timer = new Timer(100);
       timer.onUpdate = function() {
@@ -82,19 +85,30 @@
       }
       timer.onPause = function() {
         player.pauseVideo();
+        playBtnElement.innerHTML = "Play";
       }
       timer.onStop = function() {
         player.pauseVideo();
         displaySeconds(timer.remainingMs / 1000);
         bellSound.play();
+        playBtnElement.innerHTML = "Play";
       }
       timer.onStart = function() {
         player.playVideo();
+        playBtnElement.innerHTML = "Pause";
       }
       timer.onSetTimeout = function(timeoutMs) {
         displaySeconds(timeoutMs / 1000);
       }
       timer.setTimeout(25 * 60 * 1000);
+
+      function playBtnClick() {
+        if (timer.state == "running") {
+          timer.pause();
+        } else {
+          timer.start();
+        }
+      }
 
       var minutesInputElement = document.getElementById('minutes-input');
       function updateTimeout() {
