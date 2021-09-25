@@ -8,14 +8,14 @@
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <div id="player"></div>
 
-<div id="timer">
-  <div id="timer-controls">
-    <input id="minutes-input" type="time" name="appt-time" step="1" value="00:25:00">
-    <div id="play-btn" onclick=playBtnClick()>
+<div class="timer">
+  <div class="timer-controls">
+    <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
+    <div class="play-btn" onclick=playBtnClick()>
       <img id="play-btn-pic" src="https://storage.yandexcloud.net/lofitimer/play.svg"/>
     </div>
   </div>
-  <div id="set-time-btn" onclick=updateTimeout()>Set Time</div>
+  <div class="set-time-btn" onclick=updateTimeout()>Set Time</div>
 </div>
 
 <script>
@@ -51,7 +51,7 @@
     return numStr.padStart(size, '0');
   }
 
-  let timeOfTimer = document.getElementById('minutes-input');
+  let timeOfTimer = document.getElementById('timer-input');
 
   function displaySeconds(seconds) {
     if (isNaN(seconds)) {

@@ -1,52 +1,9 @@
-#timer {
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
-#timer-controls {
-    text-align: center;
-    display: flex;
-    justify-content: center;
+body {
+    font-family: monospace;
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
     display: none !important;
-}
-
-#play-btn {
-    display: inline;
-    height: 240px;
-    width: 240px;
-    margin: 47px 47px;
-    background-color: yellow;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 240px;
-
-    font-size: 44pt;
-    font-weight: bold;
-
-    border-radius: 100%;
-
-}
-
-#play-btn-pic {
-    height: 120px;
-    width: 120px;
-    margin: 60px 60px;
-}
-
-#minutes-input {
-    border: none !important;
-    display: inline;
-    height: 334px;
-    font-size: 50pt;
-    font-family: monospace;
-    line-height: 334px;
-}
-
-#minutes-input:focus {
-    border: none;
 }
 
 input {
@@ -56,6 +13,7 @@ input {
 input:focus{
     outline: none;
 }
+
 input::-webkit-datetime-edit-hour-field:focus,
 input::-webkit-datetime-edit-minute-field:focus,
 input::-webkit-datetime-edit-second-field:focus {
@@ -63,18 +21,65 @@ input::-webkit-datetime-edit-second-field:focus {
     color: black;
     outline: none;
 }
+
+.timer {
+    max-width: 1440px;
+    margin: 100px auto 0;
+}
+
+.timer-controls {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.play-btn {
+    display: inline;
+    height: 240px;
+    width: 240px;
+    background-color: yellow;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 240px;
+    font-size: 44pt;
+    font-weight: bold;
+    border-radius: 100%;
+
+}
+
+#play-btn-pic {
+    height: 120px;
+    width: 120px;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+
+#timer-input {
+    border: none !important;
+    display: inline;
+    font-size: 60px;
+    margin-right: 50px;
+}
+
+#timer-input:focus {
+    border: none;
+}
+
 @media (max-width: 991px) {
-    #timer-controls {
+    .timer {
+        margin: 20px;
+    }
+    .timer-controls {
         flex-direction: column;
     }
 
-    #timer-display {
-        height: 200px;
-        line-height: 200px;
+    .play-btn {
+        margin: 60px auto 0;
     }
 
-    #play-btn {
-        margin: 0 auto;
+    #timer-input {
+        margin-right: 0;
+        text-align: center;
     }
 }
 
