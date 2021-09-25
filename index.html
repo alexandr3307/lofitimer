@@ -1,128 +1,136 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src='js/timer.js'></script>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
+<head>
+  <script src='js/timer.js'></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<div id="player"></div>
 
-    <div id="timer">
-      <div id="timer-controls">
-        <div id="timer-display">00:00:00</div>
-        <div id="play-btn" onclick=playBtnClick()>
-            <img id="play-btn-pic" src="https://storage.yandexcloud.net/lofitimer/play.svg"/>
-        </div>
-      </div>
-      <input id="minutes-input" type="text" value="25"><label for="minutes-input">Minutes</label>
-      <div id="set-time-btn" onclick=updateTimeout()>Set Time</div>
+<div id="timer">
+  <div id="timer-controls">
+    <input id="minutes-input" type="time" name="appt-time" step="1" value="00:25:00">
+    <div id="play-btn" onclick=playBtnClick()>
+      <img id="play-btn-pic" src="https://storage.yandexcloud.net/lofitimer/play.svg"/>
     </div>
+  </div>
+  <div id="set-time-btn" onclick=updateTimeout()>Set Time</div>
+</div>
 
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
+<script>
+  // 2. This code loads the IFrame Player API code asynchronously.
+  let tag = document.createElement('script');
 
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  tag.src = "https://www.youtube.com/iframe_api";
+  let firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '0',
-          width: '0',
-          videoId: '5qap5aO4i9A',
-          playerVars: {
-            'autoplay': 0,
-            'disablekb': 1,
-            'playlist': '5qap5aO4i9A',
-            'loop': 1,
-          },
-        });
-      }
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  let player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '0',
+      width: '0',
+      videoId: '5qap5aO4i9A',
+      playerlets: {
+        'autoplay': 0,
+        'disablekb': 1,
+        'playlist': '5qap5aO4i9A',
+        'loop': 1,
+      },
+    });
+  }
 
-      function zeroPad(num, size) {
-        numStr = num.toString();
-        if (numStr.length >= size) {
-          return numStr;
-        }
-        return numStr.padStart(size, '0');
-      }
+  function zeroPad(num, size) {
+    numStr = num.toString();
+    if (numStr.length >= size) {
+      return numStr;
+    }
+    return numStr.padStart(size, '0');
+  }
 
-      var timerDisplayElement = document.getElementById('timer-display');
+  let timeOfTimer = document.getElementById('minutes-input');
 
-      function displaySeconds(seconds) {
-        if (isNaN(seconds)) {
-          return;
-        }
-        if (seconds >= 24 * 60 * 60) {
-          seconds = 24 * 60 * 60 - 1;
-        }
-        if (seconds < 0) {
-          seconds = 0;
-        }
-        seconds = Math.floor(seconds);
-        var displaySeconds = seconds % 60;
-        var displayMinutes = Math.floor(seconds / 60) % 60;
-        var displayHours   = Math.floor(seconds / 60 / 60);
+  function displaySeconds(seconds) {
+    if (isNaN(seconds)) {
+      return;
+    }
+    if (seconds >= 24 * 60 * 60) {
+      seconds = 24 * 60 * 60 - 1;
+    }
+    if (seconds < 0) {
+      seconds = 0;
+    }
+    seconds = Math.floor(seconds);
+    let displaySeconds = seconds % 60;
+    let displayMinutes = Math.floor(seconds / 60) % 60;
+    let displayHours   = Math.floor(seconds / 60 / 60);
 
-        displaySeconds = zeroPad(displaySeconds, 2);
-        displayMinutes = zeroPad(displayMinutes, 2);
-        displayHours   = zeroPad(displayHours, 2);
+    displaySeconds = zeroPad(displaySeconds, 2);
+    displayMinutes = zeroPad(displayMinutes, 2);
+    displayHours   = zeroPad(displayHours, 2);
 
-        timerDisplayElement.innerHTML = `${displayHours}:${displayMinutes}:${displaySeconds}`;
-      }
+    timeOfTimer.value = `${displayHours}:${displayMinutes}:${displaySeconds}`;
+  }
 
-      var bellSound = new Audio('https://storage.yandexcloud.net/lofitimer/bell.wav');
-      bellSound.volume = 0.1;
+  let bellSound = new Audio('https://storage.yandexcloud.net/lofitimer/bell.wav');
+  bellSound.volume = 0.1;
 
-      var playBtnElement = document.getElementById("play-btn-pic");
-      var playImgSrc = "https://storage.yandexcloud.net/lofitimer/play.svg";
-      var pauseImgSrc = "https://storage.yandexcloud.net/lofitimer/pause.svg";
+  let playBtnElement = document.getElementById("play-btn-pic");
+  let playImgSrc = "https://storage.yandexcloud.net/lofitimer/play.svg";
+  let pauseImgSrc = "https://storage.yandexcloud.net/lofitimer/pause.svg";
 
-      var timer = new Timer(100);
-      timer.onUpdate = function() {
-        displaySeconds(timer.remainingMs / 1000);
-      }
-      timer.onPause = function() {
-        player.pauseVideo();
-        playBtnElement.src = playImgSrc;
-      }
-      timer.onStop = function() {
-        player.pauseVideo();
-        displaySeconds(timer.remainingMs / 1000);
-        bellSound.play();
-        playBtnElement.src = playImgSrc;
-      }
-      timer.onStart = function() {
-        player.playVideo();
-        playBtnElement.src = pauseImgSrc;
-      }
-      timer.onSetTimeout = function(timeoutMs) {
-        displaySeconds(timeoutMs / 1000);
-      }
-      timer.setTimeout(25 * 60 * 1000);
+  let timer = new Timer(100);
+  timer.onUpdate = function() {
+    displaySeconds(timer.remainingMs / 1000);
+  }
+  timer.onPause = function() {
+    player.pauseVideo();
+    playBtnElement.src = playImgSrc;
+  }
+  timer.onStop = function() {
+    player.pauseVideo();
+    displaySeconds(timer.remainingMs / 1000);
+    bellSound.play();
+    playBtnElement.src = playImgSrc;
+  }
+  timer.onStart = function() {
+    player.playVideo();
+    playBtnElement.src = pauseImgSrc;
+  }
+  timer.onSetTimeout = function(timeoutMs) {
+    displaySeconds(timeoutMs / 1000);
+  }
+  timer.setTimeout(25 * 60 * 1000);
 
-      function playBtnClick() {
-        if (timer.state == "running") {
-          timer.pause();
-        } else {
-          timer.start();
-        }
-      }
-
-      var minutesInputElement = document.getElementById('minutes-input');
-      function updateTimeout() {
-        timeoutMin = parseInt(minutesInputElement.value);
-        if (isNaN(timeoutMin)) {
-          return;
-        }
-        timer.stop();
-        timer.setTimeout(timeoutMin * 60 * 1000);
-      }
-    </script>
-  </body>
+  function playBtnClick() {
+    if (timer.state == "running") {
+      timer.pause();
+    } else {
+      timer.start();
+    }
+  }
+  console.log('pidor', timeOfTimer.value)
+  function updateTimeout() {
+    console.log('pidor', timeOfTimer.value)
+    let timeoutMin = timeOfTimer.value.split(":")
+    console.log('pidor', timeoutMin)
+    let hours = parseInt(timeoutMin[0]) * 60 * 60 * 1000;
+    let minutes = parseInt(timeoutMin[1]) * 60 * 1000;
+    let seconds = 0
+    if (timeoutMin[2]) {
+      seconds = parseInt(timeoutMin[2]) * 1000;
+    }
+    timeoutMin = hours + minutes + seconds
+    console.log('pidor', timeoutMin)
+    if (isNaN(timeoutMin)) {
+      return;
+    }
+    timer.stop();
+    timer.setTimeout(timeoutMin);
+  }
+</script>
+</body>
 </html>
