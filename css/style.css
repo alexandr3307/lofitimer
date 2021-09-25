@@ -4,7 +4,6 @@
 }
 
 #timer-controls {
-    height: 300px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -12,18 +11,17 @@
 
 #timer-display {
     display: inline;
-    height: 300px;
-    font-size: 56pt;
+    height: 334px;
+    font-size: 50pt;
     font-family: monospace;
-    line-height: 300px;
-    padding: 30px;
+    line-height: 334px;
 }
 
 #play-btn {
     display: inline;
     height: 240px;
     width: 240px;
-    margin: 120px 120px;
+    margin: 47px 47px;
     background-color: yellow;
     text-align: center;
     vertical-align: middle;
@@ -42,7 +40,8 @@
     }
 
     #timer-display {
-        line-height: 1;
+        height: 200px;
+        line-height: 200px;
     }
 
     #play-btn {
