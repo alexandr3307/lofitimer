@@ -8,14 +8,13 @@
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <div id="player"></div>
 
-<div id="timer">
-  <div id="timer-controls">
-    <input id="minutes-input" type="time" name="appt-time" step="1" value="00:25:00">
-    <div id="play-btn" onclick=playBtnClick()>
+<div class="timer">
+  <div class="timer-controls">
+    <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
+    <div class="play-btn" onclick=playBtnClick()>
       <img id="play-btn-pic" src="https://storage.yandexcloud.net/lofitimer/play.svg"/>
     </div>
   </div>
-  <div id="set-time-btn" onclick=updateTimeout()>Set Time</div>
 </div>
 
 <script>
@@ -51,7 +50,7 @@
     return numStr.padStart(size, '0');
   }
 
-  let timeOfTimer = document.getElementById('minutes-input');
+  let timeOfTimer = document.getElementById('timer-input');
 
   function displaySeconds(seconds) {
     if (isNaN(seconds)) {
@@ -107,16 +106,16 @@
 
   function playBtnClick() {
     if (timer.state == "running") {
+      timeOfTimer.disabled = false
       timer.pause();
     } else {
+      updateTimeout()
+      timeOfTimer.disabled = true
       timer.start();
     }
   }
-  console.log('pidor', timeOfTimer.value)
   function updateTimeout() {
-    console.log('pidor', timeOfTimer.value)
     let timeoutMin = timeOfTimer.value.split(":")
-    console.log('pidor', timeoutMin)
     let hours = parseInt(timeoutMin[0]) * 60 * 60 * 1000;
     let minutes = parseInt(timeoutMin[1]) * 60 * 1000;
     let seconds = 0
@@ -124,7 +123,6 @@
       seconds = parseInt(timeoutMin[2]) * 1000;
     }
     timeoutMin = hours + minutes + seconds
-    console.log('pidor', timeoutMin)
     if (isNaN(timeoutMin)) {
       return;
     }
