@@ -1,0 +1,34 @@
+.spinner {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    vertical-align: middle;
+    align-items: center;
+}
+.loader {
+    width: 96px;
+    height: 96px;
+    border: 10px solid yellow;
+    border-bottom-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loaded .spinner {
+    display: none;
+}
+
+.loaded_hiding .spinner {
+    transition: 0.3s opacity;
+    opacity: 0;
+}
