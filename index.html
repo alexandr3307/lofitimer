@@ -3,11 +3,14 @@
 <head>
   <script src='js/timer.js'></script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/spinner.css">
 </head>
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <div id="player"></div>
-
+<div class="spinner">
+  <span class="loader"></span>
+</div>
 <div class="timer">
   <div class="timer-controls">
     <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
@@ -28,6 +31,13 @@
   // 3. This function creates an <iframe> (and YouTube player)
   //    after the API code downloads.
   let player;
+  window.onload = function () {
+    document.body.classList.add('loaded_hiding');
+    window.setTimeout(function () {
+      document.body.classList.add('loaded');
+      document.body.classList.remove('loaded_hiding');
+    }, 500);
+  }
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
       height: '0',
