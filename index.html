@@ -51,7 +51,6 @@
   }
 
   let timeOfTimer = document.getElementById('timer-input');
-  timeOfTimer.addEventListener('mouseout', () => updateTimeout())
 
   function displaySeconds(seconds) {
     if (isNaN(seconds)) {
@@ -109,6 +108,7 @@
     if (timer.state == "running") {
       timer.pause();
     } else {
+      updateTimeout()
       timer.start();
     }
   }
