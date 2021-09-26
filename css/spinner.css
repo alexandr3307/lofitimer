@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     height: 100vh;
-    vertical-align: middle;
     align-items: center;
 }
 .loader {
@@ -12,7 +11,6 @@
     border-bottom-color: black;
     border-radius: 50%;
     display: inline-block;
-    vertical-align: middle;
     animation: rotation 1s linear infinite;
 }
 @keyframes rotation {
