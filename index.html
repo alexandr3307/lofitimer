@@ -106,9 +106,11 @@
 
   function playBtnClick() {
     if (timer.state == "running") {
+      timeOfTimer.disabled = false
       timer.pause();
     } else {
       updateTimeout()
+      timeOfTimer.disabled = true
       timer.start();
     }
   }

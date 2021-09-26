@@ -14,6 +14,11 @@ input:focus{
     outline: none;
 }
 
+input:disabled{
+    background-color: white;
+    color: black;
+}
+
 input::-webkit-datetime-edit-hour-field:focus,
 input::-webkit-datetime-edit-minute-field:focus,
 input::-webkit-datetime-edit-second-field:focus {
