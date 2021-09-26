@@ -1,35 +1,32 @@
-body {
-    font-family: monospace;
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator {
-    display: none !important;
-}
-
-input {
-    cursor: text;
-}
-
-input:focus{
-    outline: none;
-}
-
-input:disabled{
-    background-color: white;
-    color: black;
-}
-
-input::-webkit-datetime-edit-hour-field:focus,
-input::-webkit-datetime-edit-minute-field:focus,
-input::-webkit-datetime-edit-second-field:focus {
-    background-color: white;
-    color: black;
-    outline: none;
-}
-
 .timer {
     max-width: 1440px;
     margin: 100px auto 0;
+    font-family: monospace;
+}
+
+.timer input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none !important;
+}
+
+.timer input {
+    cursor: text;
+}
+
+.timer input:focus{
+    outline: none;
+}
+
+.timer input:disabled{
+    background-color: white;
+    color: black;
+}
+
+.timer input::-webkit-datetime-edit-hour-field:focus,
+.timer input::-webkit-datetime-edit-minute-field:focus,
+.timer input::-webkit-datetime-edit-second-field:focus {
+    background-color: white;
+    color: black;
+    outline: none;
 }
 
 .timer-controls {
