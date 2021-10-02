@@ -4,6 +4,7 @@
   <script src='js/timer.js'></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/spinner.css">
+  <link rel="stylesheet" href="css/range.css">
 </head>
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
@@ -13,7 +14,13 @@
 </div>
 <div class="timer">
   <div class="timer-controls">
-    <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
+    <div class="timer-container">
+      <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
+      <div class="volume-box">
+        <input type="range" class="volume-range" step="1" value="80" min="0" max="100"
+               oninput="changeVolume(this.value)">
+      </div>
+    </div>
     <div class="play-btn" onclick=playBtnClick()>
       <img id="play-btn-pic" src="https://storage.yandexcloud.net/lofitimer/play.svg"/>
     </div>
@@ -123,6 +130,9 @@
       timeOfTimer.disabled = true
       timer.start();
     }
+  }
+  function changeVolume(value) {
+    player.setVolume(value)
   }
   function updateTimeout() {
     let timeoutMin = timeOfTimer.value.split(":")
