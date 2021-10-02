@@ -1,6 +1,6 @@
 .timer {
     max-width: 1440px;
-    margin: 100px auto 0;
+    margin: 30vh auto;
     font-family: monospace;
 }
 
@@ -56,11 +56,17 @@
     margin-bottom: 10px;
 }
 
+.timer-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto 50px;
+}
+
 #timer-input {
     border: none !important;
     display: inline;
     font-size: 60px;
-    margin-right: 50px;
 }
 
 #timer-input:focus {
@@ -69,7 +75,11 @@
 
 @media (max-width: 991px) {
     .timer {
-        margin: 20px;
+        margin-top: 20vh;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        vertical-align: middle;
     }
     .timer-controls {
         flex-direction: column;
@@ -79,9 +89,8 @@
         margin: 60px auto 0;
     }
 
-    #timer-input {
-        margin-right: 0;
+    .timer-container {
+        margin: 0;
         text-align: center;
     }
 }
-

@@ -2,6 +2,7 @@ let playBtnElement = document.getElementById("play-btn-pic");
 let playImgSrc = "https://storage.yandexcloud.net/lofitimer/play.svg";
 let pauseImgSrc = "https://storage.yandexcloud.net/lofitimer/pause.svg";
 
+// Timer logic
 let timer = new Timer(100);
 timer.onUpdate = function() {
   displayTimeMs(timer.remainingMs);
@@ -32,6 +33,7 @@ timer.onSetTimeout = function(timeoutMs) {
 }
 timer.setTimeout(25 * 60 * 1000);
 
+// Play button logic
 function updateTimeout() {
   let timeoutSeconds = secondsFromTimeString(timeOfTimer.value);
   let timeoutMs = timeoutSeconds * 1000;
@@ -45,5 +47,10 @@ function playBtnClick() {
     updateTimeout()
     timer.start();
   }
+}
+
+// Volume box logic
+function changeVolume(value) {
+  player.setVolume(value)
 }
 
