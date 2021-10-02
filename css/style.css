@@ -56,11 +56,17 @@
     margin-bottom: 10px;
 }
 
+.timer-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto 50px;
+}
+
 #timer-input {
     border: none !important;
     display: inline;
     font-size: 60px;
-    margin-right: 50px;
 }
 
 #timer-input:focus {
@@ -79,9 +85,8 @@
         margin: 60px auto 0;
     }
 
-    #timer-input {
+    .timer-container {
         margin-right: 0;
         text-align: center;
     }
 }
-
