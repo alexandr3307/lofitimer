@@ -30,7 +30,8 @@ body {
 .timer input::-webkit-datetime-edit-hour-field:focus,
 .timer input::-webkit-datetime-edit-minute-field:focus,
 .timer input::-webkit-datetime-edit-second-field:focus {
-    background-color: transparent;
+    border-radius: 10px;
+    background-color: #487475;
     color: #ffffff;
     outline: none;
 }
