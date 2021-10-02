@@ -1,6 +1,6 @@
 .timer {
     max-width: 1440px;
-    margin: 100px auto 0;
+    margin: 30vh auto;
     font-family: monospace;
 }
 
@@ -75,7 +75,11 @@
 
 @media (max-width: 991px) {
     .timer {
-        margin: 20px;
+        margin-top: 20vh;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        vertical-align: middle;
     }
     .timer-controls {
         flex-direction: column;
@@ -86,7 +90,7 @@
     }
 
     .timer-container {
-        margin-right: 0;
+        margin: 0;
         text-align: center;
     }
 }
