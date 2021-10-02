@@ -24,28 +24,37 @@ class Timer {
     if (this.state == "running") {
       return;
     }
-    this.state = "running";
-    this.interval = setInterval(this.update.bind(this), this.updateIntervalMs);
-    this.onStart();
+    try {
+      this.onStart();
+    } finally {
+      this.state = "running";
+      this.interval = setInterval(this.update.bind(this), this.updateIntervalMs);
+    }
   }
 
   pause() {
     if (this.state != "running") {
       return;
     }
-    this.state = "paused";
-    clearInterval(this.interval);
-    this.onPause();
+    try {
+      this.onPause();
+    } finally {
+      this.state = "paused";
+      clearInterval(this.interval);
+    }
   }
 
   stop() {
     if (this.state == "stopped") {
       return;
     }
-    this.state = "stopped";
-    clearInterval(this.interval);
-    this.elapsedMs = 0;
-    this.onStop();
+    try {
+      this.onStop();
+    } finally {
+      this.state = "stopped";
+      clearInterval(this.interval);
+      this.elapsedMs = 0;
+    }
   }
 
   setTimeout(timeoutMs) {
