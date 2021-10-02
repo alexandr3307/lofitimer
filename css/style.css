@@ -27,10 +27,6 @@ body {
     outline: none;
 }
 
-.timer input:disabled{
-    background-color: white;
-}
-
 .timer input::-webkit-datetime-edit-hour-field:focus,
 .timer input::-webkit-datetime-edit-minute-field:focus,
 .timer input::-webkit-datetime-edit-second-field:focus {
