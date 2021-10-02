@@ -46,7 +46,7 @@
     font-size: 44pt;
     font-weight: bold;
     border-radius: 100%;
-
+    cursor: pointer;
 }
 
 #play-btn-pic {
@@ -90,4 +90,3 @@
         text-align: center;
     }
 }
-
