@@ -17,7 +17,7 @@
     <div class="timer-container">
       <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
       <div class="volume-box">
-        <input type="range" class="volume-range" step="1" value="80" min="0" max="100"
+        <input type="range" class="volume-range" step="0.2" value="10" min="0" max="20"
                oninput="changeVolume(this.value)">
       </div>
     </div>
@@ -27,128 +27,10 @@
   </div>
 </div>
 
-<script>
-  // 2. This code loads the IFrame Player API code asynchronously.
-  let tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  let firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  let player;
-  window.onload = function () {
-    document.body.classList.add('loaded_hiding');
-    window.setTimeout(function () {
-      document.body.classList.add('loaded');
-      document.body.classList.remove('loaded_hiding');
-    }, 500);
-  }
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '0',
-      width: '0',
-      videoId: '5qap5aO4i9A',
-      playerVars: {
-        'autoplay': 0,
-        'disablekb': 1,
-        'playlist': '5qap5aO4i9A',
-        'loop': 1,
-      },
-    });
-  }
-
-  function zeroPad(num, size) {
-    numStr = num.toString();
-    if (numStr.length >= size) {
-      return numStr;
-    }
-    return numStr.padStart(size, '0');
-  }
-
-  let timeOfTimer = document.getElementById('timer-input');
-
-  function displaySeconds(seconds) {
-    if (isNaN(seconds)) {
-      return;
-    }
-    if (seconds >= 24 * 60 * 60) {
-      seconds = 24 * 60 * 60 - 1;
-    }
-    if (seconds < 0) {
-      seconds = 0;
-    }
-    seconds = Math.floor(seconds);
-    let displaySeconds = seconds % 60;
-    let displayMinutes = Math.floor(seconds / 60) % 60;
-    let displayHours   = Math.floor(seconds / 60 / 60);
-
-    displaySeconds = zeroPad(displaySeconds, 2);
-    displayMinutes = zeroPad(displayMinutes, 2);
-    displayHours   = zeroPad(displayHours, 2);
-
-    timeOfTimer.value = `${displayHours}:${displayMinutes}:${displaySeconds}`;
-  }
-
-  let bellSound = new Audio('https://storage.yandexcloud.net/lofitimer/bell.wav');
-  bellSound.volume = 0.1;
-
-  let playBtnElement = document.getElementById("play-btn-pic");
-  let playImgSrc = "https://storage.yandexcloud.net/lofitimer/play.svg";
-  let pauseImgSrc = "https://storage.yandexcloud.net/lofitimer/pause.svg";
-
-  let timer = new Timer(100);
-  timer.onUpdate = function() {
-    displaySeconds(timer.remainingMs / 1000);
-  }
-  timer.onPause = function() {
-    player.pauseVideo();
-    playBtnElement.src = playImgSrc;
-  }
-  timer.onStop = function() {
-    player.pauseVideo();
-    displaySeconds(timer.remainingMs / 1000);
-    bellSound.play();
-    playBtnElement.src = playImgSrc;
-  }
-  timer.onStart = function() {
-    player.playVideo();
-    playBtnElement.src = pauseImgSrc;
-  }
-  timer.onSetTimeout = function(timeoutMs) {
-    displaySeconds(timeoutMs / 1000);
-  }
-  timer.setTimeout(25 * 60 * 1000);
-
-  function playBtnClick() {
-    if (timer.state == "running") {
-      timeOfTimer.disabled = false
-      timer.pause();
-    } else {
-      updateTimeout()
-      timeOfTimer.disabled = true
-      timer.start();
-    }
-  }
-  function changeVolume(value) {
-    player.setVolume(value)
-  }
-  function updateTimeout() {
-    let timeoutMin = timeOfTimer.value.split(":")
-    let hours = parseInt(timeoutMin[0]) * 60 * 60 * 1000;
-    let minutes = parseInt(timeoutMin[1]) * 60 * 1000;
-    let seconds = 0
-    if (timeoutMin[2]) {
-      seconds = parseInt(timeoutMin[2]) * 1000;
-    }
-    timeoutMin = hours + minutes + seconds
-    if (isNaN(timeoutMin)) {
-      return;
-    }
-    timer.stop();
-    timer.setTimeout(timeoutMin);
-  }
-</script>
+<script src='js/yt.js'></script>
+<script src='js/spinner.js'></script>
+<script src='js/ding.js'></script>
+<script src='js/display.js'></script>
+<script src='js/logic.js'></script>
 </body>
 </html>
