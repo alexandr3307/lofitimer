@@ -1,7 +1,16 @@
+html {
+    height: 100%;
+}
+body {
+    background-color: #8ECACC;
+    position: relative;
+}
+
 .timer {
     max-width: 1440px;
     margin: 30vh auto;
     font-family: monospace;
+    color: #ffffff;
 }
 
 .timer input[type="time"]::-webkit-calendar-picker-indicator {
@@ -10,22 +19,20 @@
 
 .timer input {
     cursor: text;
+    background-color: transparent;
+    color: #ffffff;
 }
 
 .timer input:focus{
     outline: none;
 }
 
-.timer input:disabled{
-    background-color: white;
-    color: black;
-}
-
 .timer input::-webkit-datetime-edit-hour-field:focus,
 .timer input::-webkit-datetime-edit-minute-field:focus,
 .timer input::-webkit-datetime-edit-second-field:focus {
-    background-color: white;
-    color: black;
+    border-radius: 10px;
+    background-color: #487475;
+    color: #ffffff;
     outline: none;
 }
 
@@ -33,13 +40,16 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
 .play-btn {
     display: inline;
     height: 240px;
     width: 240px;
-    background-color: yellow;
     text-align: center;
     vertical-align: middle;
     line-height: 240px;
