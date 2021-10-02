@@ -18,7 +18,7 @@ timer.onStop = function() {
   playBtnElement.src = playImgSrc;
   displayTimeMs(timer.timeout);
   timeOfTimer.disabled = false;
-  if (timer.state == "running") {
+  if (timer.state === "running") {
       // we don't want to ding if the timer was already paused or stopped
       ding();
   }
@@ -41,7 +41,7 @@ function updateTimeout() {
   timer.setTimeout(timeoutMs);
 }
 function playBtnClick() {
-  if (timer.state == "running") {
+  if (timer.state === "running") {
     timer.pause();
   } else {
     updateTimeout()

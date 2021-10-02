@@ -21,7 +21,7 @@ class Timer {
   }
 
   start() {
-    if (this.state == "running") {
+    if (this.state === "running") {
       return;
     }
     try {
@@ -33,7 +33,7 @@ class Timer {
   }
 
   pause() {
-    if (this.state != "running") {
+    if (this.state !== "running") {
       return;
     }
     try {
@@ -45,7 +45,7 @@ class Timer {
   }
 
   stop() {
-    if (this.state == "stopped") {
+    if (this.state === "stopped") {
       return;
     }
     try {
@@ -65,7 +65,7 @@ class Timer {
   update() {
     this.elapsedMs += this.updateIntervalMs;
     this.onUpdate();
-    if (this.remainingMs == 0) {
+    if (this.remainingMs === 0) {
       this.stop();
     }
   }
