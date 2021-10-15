@@ -1,6 +1,6 @@
 let playBtnElement = document.getElementById("play-btn-pic");
-let playImgSrc = "https://storage.yandexcloud.net/lofitimer/play.svg";
-let pauseImgSrc = "https://storage.yandexcloud.net/lofitimer/pause.svg";
+let playBtnIcon = "play_circle_filled";
+let pauseBtnIcon = "pause_circle_filled";
 
 // Timer logic
 let timer = new Timer(100);
@@ -9,13 +9,13 @@ timer.onUpdate = function() {
 }
 timer.onPause = function() {
   player.pauseVideo();
-  playBtnElement.src = playImgSrc;
+  playBtnElement.innerHTML = playBtnIcon;
   timeOfTimer.disabled = false;
   ding();
 }
 timer.onStop = function() {
   player.pauseVideo();
-  playBtnElement.src = playImgSrc;
+  playBtnElement.innerHTML = playBtnIcon;
   displayTimeMs(timer.timeout);
   timeOfTimer.disabled = false;
   if (timer.state === "running") {
@@ -25,7 +25,7 @@ timer.onStop = function() {
 }
 timer.onStart = function() {
   player.playVideo();
-  playBtnElement.src = pauseImgSrc;
+  playBtnElement.innerHTML = pauseBtnIcon;
   timeOfTimer.disabled = true;
 }
 timer.onSetTimeout = function(timeoutMs) {

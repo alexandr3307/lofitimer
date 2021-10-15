@@ -53,17 +53,14 @@ body {
     text-align: center;
     vertical-align: middle;
     line-height: 240px;
-    font-size: 44pt;
-    font-weight: bold;
     border-radius: 100%;
     cursor: pointer;
 }
 
 #play-btn-pic {
-    height: 120px;
-    width: 120px;
     vertical-align: middle;
-    margin-bottom: 10px;
+    font-size: 160px;
+    margin-bottom: 20px;
 }
 
 .timer-container {
