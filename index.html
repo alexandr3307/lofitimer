@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/spinner.css">
   <link rel="stylesheet" href="css/range.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
@@ -21,9 +22,9 @@
                oninput="changeVolume(this.value)">
       </div>
     </div>
-    <div class="play-btn" onclick=playBtnClick()>
-      <img id="play-btn-pic" src="https://storage.yandexcloud.net/lofitimer/play.svg"/>
-    </div>
+    <span class="play-btn" onclick="playBtnClick()">
+        <i id="play-btn-pic" class="material-icons">play_circle_filled</i>
+    </span>
   </div>
 </div>
 
