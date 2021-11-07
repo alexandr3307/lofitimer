@@ -33,6 +33,21 @@ timer.onSetTimeout = function(timeoutMs) {
 }
 timer.setTimeout(25 * 60 * 1000);
 
+// Mute button logic
+let muteBtnElement = document.getElementById("mute-btn-pic");
+let muteBtnIcon = "volume_up";
+let unMuteBtnIcon = "volume_off";
+
+function muteBtnClick() {
+  if (player.isMuted()) {
+      player.unMute();
+      muteBtnElement.innerHTML = muteBtnIcon;
+  } else {
+      player.mute();
+      muteBtnElement.innerHTML = unMuteBtnIcon;
+  }
+}
+
 // Play button logic
 function updateTimeout() {
   let timeoutSeconds = secondsFromTimeString(timeOfTimer.value);
