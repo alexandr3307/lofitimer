@@ -9,7 +9,6 @@ body {
 .timer {
     max-width: 1440px;
     margin: 30vh auto;
-    font-family: monospace;
     color: #ffffff;
 }
 
@@ -84,6 +83,7 @@ body {
     border: none !important;
     display: inline;
     font-size: 60px;
+    font-family: Menlo, monospace;
 }
 
 #timer-input:focus {
