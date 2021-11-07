@@ -59,7 +59,6 @@ function playBtnClick() {
   if (timer.state === "running") {
     timer.pause();
   } else {
-    updateTimeout()
     timer.start();
   }
 }
