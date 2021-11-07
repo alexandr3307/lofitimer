@@ -45,8 +45,8 @@ body {
     border-radius: 20px;
 }
 
-.mute-btn {
-    float: left;
+.volume-box {
+    display: flex;
 }
 
 #mute-btn-pic {
@@ -58,7 +58,6 @@ body {
 .play-btn {
     display: inline;
     height: 240px;
-    width: 240px;
     text-align: center;
     vertical-align: middle;
     line-height: 240px;
