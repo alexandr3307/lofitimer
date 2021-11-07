@@ -46,6 +46,10 @@ body {
     border-radius: 20px;
 }
 
+.mute-btn {
+    float: left;
+}
+
 #mute-btn-pic {
     color: #487475;
     font-size: 26px;

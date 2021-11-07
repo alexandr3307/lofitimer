@@ -18,9 +18,9 @@
     <div class="timer-container">
       <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
       <div class="volume-box">
-        <span class="mute-btn" onclick="muteBtnClick()">
+        <div class="mute-btn" onclick="muteBtnClick()">
           <i id="mute-btn-pic" class="material-icons">volume_up</i>
-        </span>
+        </div>
         <input type="range" class="volume-range" step="0.2" value="10" min="0" max="20"
                oninput="changeVolume(this.value)">
       </div>
