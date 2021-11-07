@@ -26,14 +26,14 @@ input[type="range"]::-moz-range-progress {
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none !important;
-    background: #487475;
+    background: #ffffff;
     height: 5px;
     width: 5px;
     box-shadow: -100vw 0 0 100vw #ffffff;
 }
 
 input[type="range"]::-moz-range-thumb {
-    background: #487475;
+    background: #ffffff;
     height: 8px;
     width: 8px;
     border: none;
