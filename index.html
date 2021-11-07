@@ -17,14 +17,17 @@
 <div class="timer">
   <div class="timer-controls">
     <div class="timer-container">
-      <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00">
+      <input id="timer-input" type="time" name="appt-time" step="1" value="00:25:00" onchange="updateTimeout()" required>
       <div class="volume-box">
+        <div class="mute-btn" onclick="muteBtnClick()">
+          <i id="mute-btn-pic" class="material-icons">volume_up</i>
+        </div>
         <input type="range" class="volume-range" step="0.2" value="10" min="0" max="20"
                oninput="changeVolume(this.value)">
       </div>
     </div>
     <span class="play-btn" onclick="playBtnClick()">
-        <i id="play-btn-pic" class="material-icons">play_circle_filled</i>
+      <i id="play-btn-pic" class="material-icons">play_circle_filled</i>
     </span>
   </div>
 </div>
