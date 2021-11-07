@@ -1,6 +1,6 @@
 let playBtnElement = document.getElementById("play-btn-pic");
-let playBtnIcon = "play_circle_filled";
-let pauseBtnIcon = "pause_circle_filled";
+const PLAY_BTN_ICON = "play_circle_filled";
+const PAUSE_BTN_ICON = "pause_circle_filled";
 
 // Timer logic
 let timer = new Timer(100);
@@ -9,13 +9,13 @@ timer.onUpdate = function() {
 }
 timer.onPause = function() {
   player.pauseVideo();
-  playBtnElement.innerHTML = playBtnIcon;
+  playBtnElement.innerHTML = PLAY_BTN_ICON;
   timeOfTimer.disabled = false;
   ding();
 }
 timer.onStop = function() {
   player.pauseVideo();
-  playBtnElement.innerHTML = playBtnIcon;
+  playBtnElement.innerHTML = PLAY_BTN_ICON;
   displayTimeMs(timer.timeout);
   timeOfTimer.disabled = false;
   if (timer.state === "running") {
@@ -25,7 +25,7 @@ timer.onStop = function() {
 }
 timer.onStart = function() {
   player.playVideo();
-  playBtnElement.innerHTML = pauseBtnIcon;
+  playBtnElement.innerHTML = PAUSE_BTN_ICON;
   timeOfTimer.disabled = true;
 }
 timer.onSetTimeout = function(timeoutMs) {
@@ -35,16 +35,16 @@ timer.setTimeout(25 * 60 * 1000);
 
 // Mute button logic
 let muteBtnElement = document.getElementById("mute-btn-pic");
-let muteBtnIcon = "volume_up";
-let unMuteBtnIcon = "volume_off";
+const MUTE_BTN_ICON = "volume_up";
+const UN_MUTE_BTN_ICON = "volume_off";
 
 function muteBtnClick() {
   if (player.isMuted()) {
       player.unMute();
-      muteBtnElement.innerHTML = muteBtnIcon;
+      muteBtnElement.innerHTML = MUTE_BTN_ICON;
   } else {
       player.mute();
-      muteBtnElement.innerHTML = unMuteBtnIcon;
+      muteBtnElement.innerHTML = UN_MUTE_BTN_ICON;
   }
 }
 
