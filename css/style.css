@@ -46,6 +46,12 @@ body {
     border-radius: 20px;
 }
 
+#mute-btn-pic {
+    color: #487475;
+    font-size: 26px;
+    cursor: pointer;
+}
+
 .play-btn {
     display: inline;
     height: 240px;
