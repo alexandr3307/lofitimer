@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/spinner.css">
   <link rel="stylesheet" href="css/range.css">
+  <link rel="stylesheet" href="css/cookies.css">
 </head>
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
@@ -27,6 +28,14 @@
     </div>
   </div>
 </div>
+<div class="cookies">
+  <div class="cookies-container">
+    <div class="cookies-title">
+      We use cookies on our web site only to collect general usage information, such as aggregated site-visitation statistics.
+    </div>
+    <button class="cookies-button" onclick="hideCookiesWarning()">Ok</button>
+  </div>
+</div>
 
 <script>
   // 2. This code loads the IFrame Player API code asynchronously.
@@ -39,13 +48,7 @@
   // 3. This function creates an <iframe> (and YouTube player)
   //    after the API code downloads.
   let player;
-  window.onload = function () {
-    document.body.classList.add('loaded_hiding');
-    window.setTimeout(function () {
-      document.body.classList.add('loaded');
-      document.body.classList.remove('loaded_hiding');
-    }, 500);
-  }
+
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
       height: '0',
@@ -58,6 +61,16 @@
         'loop': 1,
       },
     });
+  }
+
+  let cookiesWarning = document.getElementsByClassName('cookies')[0];
+  window.onload = function () {
+    document.body.classList.add('loaded_hiding');
+    window.setTimeout(function () {
+      document.body.classList.add('loaded');
+      document.body.classList.remove('loaded_hiding');
+      cookiesWarning.classList.add('cookies-active')
+    }, 500);
   }
 
   function zeroPad(num, size) {
@@ -149,6 +162,11 @@
     }
     timer.stop();
     timer.setTimeout(timeoutMin);
+  }
+
+  //hide cookies warning
+  function hideCookiesWarning() {
+    cookiesWarning.classList.add('cookies-hide')
   }
 </script>
 </body>
