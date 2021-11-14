@@ -10,7 +10,6 @@ body {
 .timer {
     max-width: 1440px;
     margin: 30vh auto;
-    font-family: monospace;
     color: #ffffff;
 }
 
@@ -48,24 +47,29 @@ body {
     border-radius: 20px;
 }
 
+.volume-box {
+    display: flex;
+}
+
+#mute-btn-pic {
+    color: #487475;
+    font-size: 26px;
+    cursor: pointer;
+}
+
 .play-btn {
     display: inline;
-    height: 240px;
-    width: 240px;
     text-align: center;
     vertical-align: middle;
     line-height: 240px;
-    font-size: 44pt;
-    font-weight: bold;
     border-radius: 100%;
     cursor: pointer;
 }
 
 #play-btn-pic {
-    height: 120px;
-    width: 120px;
     vertical-align: middle;
-    margin-bottom: 10px;
+    font-size: 160px;
+    margin-bottom: 20px;
 }
 
 .timer-container {
@@ -79,6 +83,7 @@ body {
     border: none !important;
     display: inline;
     font-size: 60px;
+    font-family: Menlo, monospace;
 }
 
 #timer-input:focus {
