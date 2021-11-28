@@ -88,7 +88,6 @@ input {
     border: none !important;
     display: inline;
     font-size: 60px;
-    max-width: 270px;
 }
 
 #timer-input:focus {
