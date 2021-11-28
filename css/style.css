@@ -8,6 +8,10 @@ body {
     display: block;
 }
 
+input {
+    font-family: 'Roboto Mono', sans-serif;
+}
+
 .timer {
     max-width: 1440px;
     margin: 30vh auto;
